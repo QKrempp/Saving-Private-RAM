@@ -13,8 +13,10 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var _main_character : MainCharacter = $MainCharacter
 @onready var _enemy_spawner : Node2D = $EnemySpawner
 @onready var ui: CanvasLayer = $LevelUpUi
+@onready var world: World = $World
 
 func _ready() -> void:
+	_main_character.global_position = world.player_pixel_pos
 	rng.randomize()
 	_main_character.level_up.connect(_on_player_level_up.bind())
 	_enemy_spawner.enemy_spawned.connect(_on_enemy_spawned.bind())

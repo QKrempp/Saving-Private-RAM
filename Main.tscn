@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://rqfac7yewprr"]
+[gd_scene load_steps=22 format=3 uid="uid://rqfac7yewprr"]
 
 [ext_resource type="PackedScene" uid="uid://bl4iswbwybro2" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://cmsp16brd2o8w" path="res://main.gd" id="1_r0du0"]
@@ -6,13 +6,14 @@
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://ndwly0t6aavc" path="res://Art/Envrionment/Mur1AngleOblique.png" id="3_c2ibq"]
 [ext_resource type="Script" path="res://xpbar.gd" id="4_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://ddu8ti7s0a4a0" path="res://EnemySpawner.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" path="res://EnemySpawner.tscn" id="4_cm0pq"]
 [ext_resource type="AudioStream" uid="uid://d0cxcsryo5c05" path="res://Sound Assets/Music/bg_ambience_music.mp3" id="4_fos0i"]
 [ext_resource type="Texture2D" uid="uid://b1l57wpd4107s" path="res://Art/Envrionment/Mur1Droit.png" id="4_j4qnp"]
 [ext_resource type="Texture2D" uid="uid://be7l8rb5xb7jf" path="res://Art/Envrionment/Mur1PetitAngle.png" id="5_fpfj3"]
 [ext_resource type="Script" path="res://level.gd" id="5_lgr22"]
 [ext_resource type="Texture2D" uid="uid://chjt2vjjorqmj" path="res://Art/Envrionment/Sol1.png" id="6_sc1dx"]
-[ext_resource type="PackedScene" uid="uid://cofm2bjldku1x" path="res://LevelUpUi.tscn" id="8_trn2v"]
+[ext_resource type="Script" uid="uid://tb3k0lkcrh4k" path="res://env_gen.gd" id="7_c2ibq"]
+[ext_resource type="PackedScene" path="res://LevelUpUi.tscn" id="8_trn2v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kjvhd"]
 texture = ExtResource("2_c6i3y")
@@ -310,6 +311,7 @@ texture_region_size = Vector2i(140, 140)
 7:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_bg4s2"]
+tile_size = Vector2i(140, 140)
 sources/0 = SubResource("TileSetAtlasSource_kjvhd")
 sources/1 = SubResource("TileSetAtlasSource_5tuhn")
 sources/2 = SubResource("TileSetAtlasSource_2gh4u")
@@ -332,13 +334,15 @@ offset_bottom = 179.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Env" type="TileMapLayer" parent="."]
+[node name="World" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_bg4s2")
+script = ExtResource("7_c2ibq")
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(161, 89)
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+zoom = Vector2(0.1, 0.1)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
