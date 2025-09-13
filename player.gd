@@ -7,6 +7,7 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
 @onready var animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+#@onready var _ram : RamOverlay = $/root/Room/Overlay/RAM
 
 var last_offset := 0.0
 var _fade_tween: Tween # pour éviter les tweens qui se chevauchent
@@ -74,8 +75,9 @@ func _physics_process(_delta: float) -> void:
 		var start_pos: Vector2 = global_position
 		var direction: Vector2 = start_pos.direction_to(mouse_pos)
 		get_tree().current_scene.add_child(inst) # selon ta scène, get_parent() ou get_tree().current_scene peut être plus sûr
+		#_ram._on_shoot_bullet()
+		#inst.entity_destroyed.connect(_ram._on_countable_entity_destroyed.bind())
 		inst.start(start_pos, direction)
-		shoot_bullet.emit(inst)
 		_fire_rate.start()
 		audio.play()
 
@@ -86,5 +88,5 @@ func _on_enemy_killed(entity_xp_amount: int) -> void:
 	if player_xp >= xp_cap :
 		player_xp = player_xp % xp_cap
 		player_lvl += 1
-		xp_cap += 20 + 10*player_lvl
+		xp_cap += 20 + 10 * player_lvl
 	print("Xp: " + str(player_xp))
