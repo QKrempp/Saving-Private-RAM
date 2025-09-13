@@ -13,10 +13,10 @@ func _physics_process(_delta: float) -> void:
 	for index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(index)
 		if collision and collision.get_collider() and collision.get_collider().is_in_group("bullets"):
-				var bullet = collision.get_collider()
-				hit(bullet)
-				bullet.entity_destroyed.emit()
-				bullet.queue_free()
+			var bullet = collision.get_collider()
+			hit(bullet)
+			bullet.entity_destroyed.emit()
+			bullet.queue_free()
 
 	if velocity != Vector2.ZERO:
 		animated_zombie1_sprite.play("WalkZombie1")
@@ -27,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 func hit(bullet: Bullet) -> void:
 	health -= 1
 	var inst: BloodSplatter = BLOOD_SPLATTER.instantiate()
-	inst.blood_splattered.connect(_ram._on_countable_entity_spawned.bind())
+	inst.blood_splattered.connect(_ram._on_countable_entity_spawned.bind(1))
 	inst.start(global_position, bullet.rotation)
 	get_tree().current_scene.add_child(inst)
 	if health <= 0:
