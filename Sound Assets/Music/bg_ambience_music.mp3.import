@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d0cxcsryo5c05"
+path="res://.godot/imported/bg_ambience_music.mp3-7dde1a2f66e9d6007954e5792826c8e0.mp3str"
+
+[deps]
+
+source_file="res://Sound Assets/Music/bg_ambience_music.mp3"
+dest_files=["res://.godot/imported/bg_ambience_music.mp3-7dde1a2f66e9d6007954e5792826c8e0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

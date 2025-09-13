@@ -1,17 +1,24 @@
-extends CountableEntity
+class_name MainCharacter extends CountableEntity
 
-const SPEED: int = 100
 const BULLET: PackedScene = preload("res://Bullet.tscn")
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
-@onready var	 animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+#@onready var _ram : RamOverlay = $/root/Room/Overlay/RAM
 
 var last_offset := 0.0
 var _fade_tween: Tween # pour éviter les tweens qui se chevauchent
+var SPEED: int = 200
+var bullet_number = 1
+
+var player_xp = 0
+var player_lvl = 0
+var xp_cap = 20
 
 signal shoot_bullet
+signal level_up
 
 func _kill_fade_tween():
 	if _fade_tween and _fade_tween.is_running():
@@ -56,7 +63,7 @@ func _physics_process(_delta: float) -> void:
 		if not bruits_de_pas.playing:
 			# si on repart pendant un fade, le stopper
 			_kill_fade_tween()
-			bruits_de_pas.volume_db = 0.0
+			bruits_de_pas.volume_db = -5.0
 			bruits_de_pas.play()
 			_safe_seek_from_last_offset(bruits_de_pas)
 		animated_ryan_sprite.play("Walk")
@@ -66,13 +73,38 @@ func _physics_process(_delta: float) -> void:
 		animated_ryan_sprite.play("Idle")
 
 	if Input.is_action_pressed("ui_left_click") and _fire_rate.is_stopped():
-		var inst: Bullet = BULLET.instantiate()
-		var start_pos: Vector2 = global_position
-		var direction: Vector2 = start_pos.direction_to(mouse_pos)
-		get_owner().add_child(inst) # selon ta scène, get_parent() ou get_tree().current_scene peut être plus sûr
-		inst.start(start_pos, direction)
-		shoot_bullet.emit(inst)
-		_fire_rate.start()
-		audio.play()
+		_shoot_bullets(mouse_pos, bullet_number)
 
 	move_and_slide()
+	
+func _on_enemy_killed(entity_xp_amount: int) -> void:
+	player_xp += entity_xp_amount
+	if player_xp >= xp_cap :
+		player_xp = player_xp % xp_cap
+		player_lvl += 1
+		xp_cap += 20 + 5 * player_lvl
+		emit_signal("level_up")
+	print("Xp: " + str(player_xp))
+	
+
+func _shoot_bullets(mouse_pos, bullet_number) -> void:
+	var start_pos: Vector2 = global_position
+	var base_direction: Vector2 = start_pos.direction_to(mouse_pos).normalized()
+
+	var spread_angle = 10.0 * (bullet_number - 1) # ouverture en degrés
+	var rng := RandomNumberGenerator.new()
+	rng.randomize()
+
+	for i in bullet_number:
+		var inst: Bullet = BULLET.instantiate()
+		get_tree().current_scene.add_child(inst)
+
+		# angle en radians avec un décalage aléatoire
+		var random_offset := deg_to_rad(rng.randf_range(-spread_angle, spread_angle))
+		var final_dir := base_direction.rotated(random_offset)
+
+		inst.start(start_pos, final_dir)
+		shoot_bullet.emit(inst)
+
+	_fire_rate.start()
+	audio.play()

@@ -1,18 +1,11 @@
-extends Label
+class_name RamOverlay extends Label
 
-const TOTAL_RAM: int = 1024
+const TOTAL_RAM: int = 32
 var used_ram: int = 0
 
 func _ready() -> void:
+	add_theme_color_override("font_color", Color.WHITE)
 	text = "Available RAM: " + str(used_ram) + " / " + str(TOTAL_RAM) + " Mo"
-
-func _on_shoot_bullet(bullet: Bullet) -> void:
-	bullet.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
-	_on_countable_entity_spawned()
-
-func _on_ennemy_spawned(ennemy: Ennemy) -> void:
-	ennemy.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
-	_on_countable_entity_spawned()
 
 func _on_countable_entity_spawned() -> void:
 	used_ram += 1
@@ -24,3 +17,7 @@ func _on_countable_entity_destroyed() -> void:
 
 func refresh_ram_counter() -> void:
 	text = "Available RAM: " + str(used_ram) + " / " + str(TOTAL_RAM) + " Mo"
+	if float(used_ram) / float(TOTAL_RAM) > 0.8:
+		add_theme_color_override("font_color", Color.RED)
+	if used_ram >= TOTAL_RAM:
+		get_tree().quit()
