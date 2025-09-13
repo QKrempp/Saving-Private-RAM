@@ -4,6 +4,7 @@ const SPEED: int = 100
 const BULLET: PackedScene = preload("res://Bullet.tscn")
 
 @onready var audio = $AudioStreamPlayer
+@onready var bruits_de_pas = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
 
 signal shoot_bullet
@@ -21,6 +22,10 @@ func _physics_process(_delta: float) -> void:
 		movement.y += 1
 	velocity = movement * SPEED
 	rotation = global_position.direction_to(mouse_pos).angle()
+	if velocity != Vector2.ZERO and not bruits_de_pas.is_playing():
+		bruits_de_pas.play()
+	elif velocity == Vector2.ZERO :
+		bruits_de_pas.stop()
 	
 	if Input.is_action_pressed("ui_left_click") and _fire_rate.is_stopped():
 		var inst: Bullet = BULLET.instantiate()

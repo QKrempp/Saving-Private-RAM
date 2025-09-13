@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://rqfac7yewprr"]
+[gd_scene load_steps=7 format=3 uid="uid://rqfac7yewprr"]
 
 [ext_resource type="PackedScene" uid="uid://bl4iswbwybro2" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://cmsp16brd2o8w" path="res://main.gd" id="1_r0du0"]
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="AudioStream" uid="uid://c16alwrnlwfj" path="res://Sound Assets/Sounds/Shotgun_Shot-001.wav" id="3_cm0pq"]
+[ext_resource type="AudioStream" uid="uid://ch6da2eebolar" path="res://Sound Assets/Sounds/buits_de_pas.mp3" id="4_3dxm6"]
 [ext_resource type="AudioStream" uid="uid://bbh0f5y7nuh1k" path="res://Sound Assets/Music/bg_music.mp3" id="5_fos0i"]
 
 [node name="Room" type="Node2D"]
@@ -22,6 +23,10 @@ position = Vector2(161, 89)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MainCharacter"]
 stream = ExtResource("3_cm0pq")
 
+[node name="BruitsDePas" type="AudioStreamPlayer" parent="MainCharacter"]
+stream = ExtResource("4_3dxm6")
+parameters/looping = true
+
 [node name="Overlay" type="CanvasLayer" parent="."]
 
 [node name="RAM" type="Label" parent="Overlay"]
@@ -33,4 +38,5 @@ script = ExtResource("2_uu6xs")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_fos0i")
+volume_db = -20.428
 autoplay = true
