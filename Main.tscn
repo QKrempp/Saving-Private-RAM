@@ -1,14 +1,320 @@
-[gd_scene load_steps=10 format=3 uid="uid://rqfac7yewprr"]
+[gd_scene load_steps=21 format=3 uid="uid://rqfac7yewprr"]
 
 [ext_resource type="PackedScene" uid="uid://bl4iswbwybro2" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://cmsp16brd2o8w" path="res://main.gd" id="1_r0du0"]
+[ext_resource type="Texture2D" uid="uid://dlugab0o1q0ht" path="res://Art/Envrionment/Mur1Angle.png" id="2_c6i3y"]
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
-[ext_resource type="Script" uid="uid://b6ex6sllvaay6" path="res://xpbar.gd" id="4_3dxm6"]
+[ext_resource type="Texture2D" uid="uid://ndwly0t6aavc" path="res://Art/Envrionment/Mur1AngleOblique.png" id="3_c2ibq"]
+[ext_resource type="Script" path="res://xpbar.gd" id="4_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://ddu8ti7s0a4a0" path="res://EnemySpawner.tscn" id="4_cm0pq"]
 [ext_resource type="AudioStream" uid="uid://d0cxcsryo5c05" path="res://Sound Assets/Music/bg_ambience_music.mp3" id="4_fos0i"]
-
-[ext_resource type="Script" uid="uid://cl2k87jeye8dw" path="res://level.gd" id="5_lgr22"]
+[ext_resource type="Texture2D" uid="uid://b1l57wpd4107s" path="res://Art/Envrionment/Mur1Droit.png" id="4_j4qnp"]
+[ext_resource type="Texture2D" uid="uid://be7l8rb5xb7jf" path="res://Art/Envrionment/Mur1PetitAngle.png" id="5_fpfj3"]
+[ext_resource type="Script" path="res://level.gd" id="5_lgr22"]
+[ext_resource type="Texture2D" uid="uid://chjt2vjjorqmj" path="res://Art/Envrionment/Sol1.png" id="6_sc1dx"]
 [ext_resource type="PackedScene" uid="uid://cofm2bjldku1x" path="res://LevelUpUi.tscn" id="8_trn2v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kjvhd"]
+texture = ExtResource("2_c6i3y")
+texture_region_size = Vector2i(140, 140)
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5tuhn"]
+texture = ExtResource("3_c2ibq")
+texture_region_size = Vector2i(140, 140)
+7:0/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2gh4u"]
+texture = ExtResource("4_j4qnp")
+texture_region_size = Vector2i(140, 140)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_devvj"]
+texture = ExtResource("5_fpfj3")
+texture_region_size = Vector2i(140, 140)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3b0ty"]
+texture = ExtResource("6_sc1dx")
+texture_region_size = Vector2i(140, 140)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+3:7/0 = 0
+4:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_bg4s2"]
+sources/0 = SubResource("TileSetAtlasSource_kjvhd")
+sources/1 = SubResource("TileSetAtlasSource_5tuhn")
+sources/2 = SubResource("TileSetAtlasSource_2gh4u")
+sources/3 = SubResource("TileSetAtlasSource_devvj")
+sources/4 = SubResource("TileSetAtlasSource_3b0ty")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dxm6"]
 bg_color = Color(4.33177e-06, 0.667755, 0.803827, 1)
@@ -25,6 +331,9 @@ offset_right = 321.0
 offset_bottom = 179.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Env" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_bg4s2")
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(161, 89)
