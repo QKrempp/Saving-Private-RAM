@@ -1,4 +1,4 @@
-extends Label
+class_name RamOverlay extends Label
 
 const TOTAL_RAM: int = 1024
 var used_ram: int = 0
@@ -10,8 +10,8 @@ func _on_shoot_bullet(bullet: Bullet) -> void:
 	bullet.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
 	_on_countable_entity_spawned()
 
-func _on_ennemy_spawned(ennemy: Ennemy) -> void:
-	ennemy.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
+func _on_enemy_spawned(enemy: Enemy) -> void:
+	enemy.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
 	_on_countable_entity_spawned()
 
 func _on_countable_entity_spawned() -> void:

@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="AudioStream" uid="uid://c16alwrnlwfj" path="res://Sound Assets/Sounds/Shotgun_Shot-001.wav" id="3_cm0pq"]
 [ext_resource type="AudioStream" uid="uid://ch6da2eebolar" path="res://Sound Assets/Sounds/buits_de_pas.mp3" id="4_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://ddu8ti7s0a4a0" path="res://EnnemySpawner.tscn" id="4_cm0pq"]
+[ext_resource type="PackedScene" uid="uid://ddu8ti7s0a4a0" path="res://EnemySpawner.tscn" id="4_cm0pq"]
 [ext_resource type="AudioStream" uid="uid://bbh0f5y7nuh1k" path="res://Sound Assets/Music/bg_music.mp3" id="5_fos0i"]
 
 [node name="Room" type="Node2D"]
