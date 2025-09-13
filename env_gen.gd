@@ -1,0 +1,245 @@
+class_name World extends TileMapLayer
+
+@export var width: int = 30
+@export var height: int = 50
+@export var wall_probability: float = 0.55  # proba initiale de mur
+@export var smooth_steps: int = 5            # itérations d'automate cellulaire
+@export var connect_regions: bool = true     # relier toutes les zones vides
+@export var keep_largest_only: bool = false  # si true, supprime les petites zones au lieu de les relier
+
+var player_pos_grid = Vector2.ZERO
+var player_pixel_pos = Vector2.ZERO
+
+var grid: Array = []  # grid[y][x] = 0 (vide) ou 1 (mur)
+
+
+func _ready() -> void:
+	generate()
+	render_map()
+	var player_pos_array = _region_center(get_largest_region())
+	player_pos_grid = random_pos()
+	player_pixel_pos = Vector2(player_pos_grid.x * 140, player_pos_grid.y * 140)
+	print_grid() 
+	
+func random_pos() -> Vector2:
+	var count := 0
+	while count < 1000:
+		var res = Vector2(randi_range(0, width), randi_range(0, height))
+		if grid[res.y][res.x] == 0:
+			return res
+		count+=1
+	return Vector2(0, 0)
+
+func render_map():
+	for y in range(0, height):
+		for x in range(width):
+			if grid[y][x] == 1:
+				set_cell(Vector2(x, y), 2, Vector2(0, 0))
+			else:
+				set_cell(Vector2(x, y), 4, Vector2(0, 0))
+
+func generate(p_width: int = -1, p_height: int = -1, p_wall_probability: float = -1.0, p_smooth_steps: int = -1) -> void:
+	# Paramètres
+	if p_width > 0: width = p_width
+	if p_height > 0: height = p_height
+	if p_wall_probability >= 0.0: wall_probability = clampf(p_wall_probability, 0.0, 1.0)
+	if p_smooth_steps >= 0: smooth_steps = p_smooth_steps
+
+	grid = _random_fill(width, height, wall_probability)
+
+	for i in smooth_steps:
+		grid = _simulate_step(grid)
+
+	_set_borders_as_walls(grid)
+
+	if connect_regions:
+		_connect_all_regions()
+
+	_set_borders_as_walls(grid)
+
+func _random_fill(w: int, h: int, p: float) -> Array:
+	var g := []
+	g.resize(h)
+	for y in h:
+		var row := PackedInt32Array()
+		row.resize(w)
+		for x in w:
+			# Bords = murs
+			if x == 0 or y == 0 or x == w - 1 or y == h - 1:
+				row[x] = 1
+			else:
+				if randf() < p:
+					row[x] = 1
+				else:
+					row[x] = 0
+		g[y] = row
+	return g
+
+func _simulate_step(g: Array) -> Array:
+	var w = g[0].size()
+	var h = g.size()
+	var out = []
+	out.resize(h)
+	for y in h:
+		var row := PackedInt32Array()
+		row.resize(w)
+		for x in w:
+			var count := _count_wall_neighbors(g, x, y)
+			# Règle classique : si beaucoup de murs autour => ce cell devient mur, sinon vide
+			# Ajustez les seuils pour plus/moins de cavernes.
+			if count > 4:
+				row[x] = 1
+			elif count < 4:
+				row[x] = 0
+			else:
+				row[x] = g[y][x]
+		out[y] = row
+	return out
+
+func _count_wall_neighbors(g: Array, cx: int, cy: int) -> int:
+	var w = g[0].size()
+	var h = g.size()
+	var c = 0
+	for dy in range(-1, 2):
+		for dx in range(-1, 2):
+			if dx == 0 and dy == 0:
+				continue
+			var x := cx + dx
+			var y := cy + dy
+			if x < 0 or y < 0 or x >= w or y >= h:
+				c += 1 # hors carte = mur implicite
+			else:
+				c += g[y][x]
+	return c
+
+func _set_borders_as_walls(g: Array) -> void:
+	var w = g[0].size()
+	var h := g.size()
+	for x in w:
+		g[0][x] = 1
+		g[h - 1][x] = 1
+	for y in h:
+		g[y][0] = 1
+		g[y][w - 1] = 1
+
+# --------- Connexité / Régions ---------
+
+func _get_regions_of(value: int) -> Array:
+	# Renvoie une liste de régions, chaque région = Array de Vector2i (positions)
+	var w = grid[0].size()
+	var h := grid.size()
+	var visited := {}
+	var regions := []
+	for y in h:
+		for x in w:
+			if grid[y][x] == value and not visited.has(Vector2i(x, y)):
+				var region := _flood_fill(Vector2i(x, y), value, visited)
+				regions.append(region)
+	return regions
+
+func _flood_fill(start: Vector2i, value: int, visited: Dictionary) -> Array:
+	var q := [start]
+	var region := []
+	visited[start] = true
+	while not q.is_empty():
+		var p: Vector2i = q.pop_back()
+		region.append(p)
+		for dir in [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]:
+			var n = p + dir
+			if _in_bounds(n) and grid[n.y][n.x] == value and not visited.has(n):
+				visited[n] = true
+				q.append(n)
+	return region
+
+func _in_bounds(p: Vector2i) -> bool:
+	return p.x >= 0 and p.y >= 0 and p.y < grid.size() and p.x < grid[0].size()
+
+func get_largest_region() -> Array:
+	var floor_regions := _get_regions_of(0)
+	if floor_regions.is_empty():
+		return []
+	floor_regions.sort_custom(func(a, b): return a.size() > b.size())
+	return floor_regions[0]
+
+func _connect_all_regions() -> void:
+	var regions := _get_regions_of(0)
+	if regions.size() <= 1:
+		return
+	# On calcule un "centre" simple par région (médiane)
+	var centers := []
+	for region in regions:
+		centers.append(_region_center(region))
+	# On relie séquentiellement les centres par des couloirs en L (Manhattan)
+	for i in range(1, centers.size()):
+		_carve_corridor(centers[i - 1], centers[i])
+
+func find_closest_start_point(p: Vector2) -> Vector2: # not working
+	var delta = 0
+	while delta < max(width, height):
+		for i in range(int(p.x - delta), int(p.x+delta)):
+			for j in range(int(p.y-delta), int(p.y+delta)):
+				if grid[j][i] == 0:
+					return Vector2(i, j)
+		delta+=1
+	return Vector2(0, 0)
+
+func _region_center(region: Array) -> Vector2i:
+	# Centre ~ médian pour réduire l'influence des outliers
+	var xs := PackedInt32Array()
+	var ys := PackedInt32Array()
+	xs.resize(region.size())
+	ys.resize(region.size())
+	for i in region.size():
+		xs[i] = region[i].x
+		ys[i] = region[i].y
+	xs.sort()
+	ys.sort()
+	return Vector2i(xs[xs.size() / 2], ys[ys.size() / 2])
+
+func _carve_corridor(a: Vector2i, b: Vector2i) -> void:
+	# Couloir en L : horizontal puis vertical (ou l'inverse au hasard)
+	if randf() < 0.5:
+		_carve_line_x(a.x, b.x, a.y)
+		_carve_line_y(a.y, b.y, b.x)
+	else:
+		_carve_line_y(a.y, b.y, a.x)
+		_carve_line_x(a.x, b.x, b.y)
+
+func _carve_line_x(x0: int, x1: int, y: int) -> void:
+	var step
+	if x1 > x0:
+		step = 1
+	else:
+		step = -1
+	for x in range(x0, x1 + step, step):
+		_dig(Vector2i(x, y))
+
+func _carve_line_y(y0: int, y1: int, x: int) -> void:
+	var step
+	if y1 > y0:
+		step = 1
+	else:
+		step = -1
+	for y in range(y0, y1 + step, step):
+		_dig(Vector2i(x, y))
+
+func _dig(p: Vector2i) -> void:
+	if _in_bounds(p):
+		grid[p.y][p.x] = 0
+
+# --------- Utilitaires ---------
+
+func print_grid() -> void:
+	# Affiche la carte avec '#' pour mur et '.' pour vide
+	var sb := []
+	for y in grid.size():
+		var line := ""
+		for x in grid[0].size():
+			if x == player_pos_grid.x and player_pos_grid.y == y:
+				line += "O"
+			elif grid[y][x] == 1:
+				line += "#"
+			else:
+				line += "."
+		sb.append(line)
+	print("\n".join(sb))
