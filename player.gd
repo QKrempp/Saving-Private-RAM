@@ -6,6 +6,7 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
 @onready var animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+#@onready var _ram : RamOverlay = $/root/Room/Overlay/RAM
 
 var last_offset := 0.0
 var _fade_tween: Tween # pour éviter les tweens qui se chevauchent
@@ -81,7 +82,7 @@ func _on_enemy_killed(entity_xp_amount: int) -> void:
 	if player_xp >= xp_cap :
 		player_xp = player_xp % xp_cap
 		player_lvl += 1
-		xp_cap += 20 + 5*player_lvl
+		xp_cap += 20 + 5 * player_lvl
 		emit_signal("level_up")
 	print("Xp: " + str(player_xp))
 	

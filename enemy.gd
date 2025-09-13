@@ -7,6 +7,7 @@ var xp_amount = 5
 const BLOOD_SPLATTER = preload("res://BloodSplatter.tscn")
 
 @onready var animated_zombie1_sprite:AnimatedSprite2D = $AnimatedSprite2D
+#@onready var _ram : RamOverlay = $/root/Room/Overlay/RAM
 
 func _physics_process(_delta: float) -> void:
 	for index in range(get_slide_collision_count()):
@@ -26,6 +27,7 @@ func _physics_process(_delta: float) -> void:
 func hit(bullet: Bullet) -> void:
 	health -= 1
 	var inst: BloodSplatter = BLOOD_SPLATTER.instantiate()
+	inst.blood_splattered.connect(_ram._on_countable_entity_spawned.bind())
 	inst.start(global_position, bullet.rotation)
 	get_tree().current_scene.add_child(inst)
 	if health <= 0:
