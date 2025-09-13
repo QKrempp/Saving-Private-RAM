@@ -27,6 +27,8 @@ stream = ExtResource("3_cm0pq")
 stream = ExtResource("4_3dxm6")
 parameters/looping = true
 
+[node name="Camera2D" type="Camera2D" parent="MainCharacter"]
+
 [node name="Overlay" type="CanvasLayer" parent="."]
 
 [node name="RAM" type="Label" parent="Overlay"]
