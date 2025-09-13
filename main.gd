@@ -15,7 +15,8 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 
 func _ready() -> void:
 	rng.randomize()
-	_main_character.level_up.connect(_on_player_level_up)
+	_main_character.level_up.connect(_on_player_level_up.bind())
+	_enemy_spawner.enemy_spawned.connect(_on_enemy_spawned.bind())
 	ui.option_chosen.connect(_on_upgrade_chosen)
 
 func _on_enemy_spawned(enemy: Enemy) -> void:
