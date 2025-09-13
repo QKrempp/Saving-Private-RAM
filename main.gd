@@ -2,8 +2,9 @@ extends Node2D
 
 var rng := RandomNumberGenerator.new()
 var upgrades: Array[Dictionary] = [
-	{ "id": "speed_1",     "name": "Vitesse +20%" },
-	{ "id": "fire_rate_1", "name": "Cadence +25%" },
+	{ "id": "speed_1",     "name": "Increase Speed by 10%" },
+	{ "id": "fire_rate_1", "name": "Increase Fire Rate by 20%" },
+	{ "id": "spray_shots_1", "name": "Increase bullets shot by 1 but decreases accuracy" },
 ]
 
 const BULLET: PackedScene = preload("res://Bullet.tscn")
@@ -12,8 +13,10 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var _main_character : MainCharacter = $MainCharacter
 @onready var _enemy_spawner : Node2D = $EnemySpawner
 @onready var ui: CanvasLayer = $LevelUpUi
+@onready var world: World = $World
 
 func _ready() -> void:
+	_main_character.global_position = world.player_pixel_pos
 	rng.randomize()
 	_main_character.level_up.connect(_on_player_level_up.bind())
 	_enemy_spawner.enemy_spawned.connect(_on_enemy_spawned.bind())
@@ -48,10 +51,10 @@ func _pick_random_upgrade(exclude_id: String = "") -> Dictionary:
 func apply_upgrade(id: String) -> void:
 	match id:
 		"speed_1":
-			if _main_character.has_variable("speed"):
-				_main_character.speed *= 1.2
+			_main_character.SPEED += 20
 		"fire_rate_1":
-			# attend un Timer nommé "FireRate" sous le Player
-			_main_character._fire_rate.wait_time /= 2
+			_main_character._fire_rate.wait_time *= 0.8
+		"spray_shots_1":
+			_main_character.bullet_number += 1
 		_:
 			push_warning("Upgrade inconnue: %s" % id)

@@ -75,7 +75,6 @@ autoplay = "Idle"
 frame_progress = 0.350251
 
 [node name="FireRate" type="Timer" parent="."]
-wait_time = 0.1
 one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -84,4 +83,5 @@ max_polyphony = 3
 
 [node name="BruitsDePas" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_cxr5p")
+max_polyphony = 2
 parameters/looping = true
