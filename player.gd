@@ -16,6 +16,7 @@ var player_lvl = 0
 var xp_cap = 20
 
 signal shoot_bullet
+signal level_up
 
 func _kill_fade_tween():
 	if _fade_tween and _fade_tween.is_running():
@@ -87,4 +88,5 @@ func _on_enemy_killed(entity_xp_amount: int) -> void:
 		player_xp = player_xp % xp_cap
 		player_lvl += 1
 		xp_cap += 20 + 10*player_lvl
+		emit_signal("level_up")
 	print("Xp: " + str(player_xp))
