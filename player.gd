@@ -3,6 +3,7 @@ extends CountableEntity
 const SPEED: int = 100
 const BULLET: PackedScene = preload("res://Bullet.tscn")
 
+@onready var audio = $AudioStreamPlayer
 @onready var _fire_rate: Timer = $FireRate
 
 signal shoot_bullet
@@ -29,5 +30,6 @@ func _physics_process(_delta: float) -> void:
 		inst.start(start_pos, direction)
 		shoot_bullet.emit(inst)
 		_fire_rate.start()
+		audio.play()
 	
 	move_and_slide()
