@@ -29,12 +29,12 @@ func fade_out(player: AudioStreamPlayer, duration: float = 0.2):
 	)
 
 func _safe_seek_from_last_offset(player: AudioStreamPlayer):
-	var len := 0.0
+	var stream_len := 0.0
 	if player.stream:
-		len = player.stream.get_length() # 0.0 si inconnu
+		stream_len = player.stream.get_length() # 0.0 si inconnu
 	# Si on connaît la longueur, remet l'offset dans [0, len)
-	if len > 0.0:
-		var pos := fposmod(last_offset, len)
+	if stream_len > 0.0:
+		var pos := fposmod(last_offset, stream_len)
 		player.seek(pos)
 	else:
 		player.seek(last_offset) # au pire, on tente
