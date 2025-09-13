@@ -6,6 +6,7 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
+@onready var	 animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
 
 var last_offset := 0.0
 var _fade_tween: Tween # pour éviter les tweens qui se chevauchent
@@ -58,9 +59,11 @@ func _physics_process(_delta: float) -> void:
 			bruits_de_pas.volume_db = 0.0
 			bruits_de_pas.play()
 			_safe_seek_from_last_offset(bruits_de_pas)
+		animated_ryan_sprite.play("Walk")
 	else:
 		if bruits_de_pas.playing:
 			fade_out(bruits_de_pas, 0.2)
+		animated_ryan_sprite.play("Idle")
 
 	if Input.is_action_pressed("ui_left_click") and _fire_rate.is_stopped():
 		var inst: Bullet = BULLET.instantiate()
