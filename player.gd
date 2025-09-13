@@ -83,8 +83,8 @@ func _physics_process(_delta: float) -> void:
 	
 func _on_enemy_killed(entity_xp_amount: int) -> void:
 	player_xp += entity_xp_amount
-	if player_xp >= 100:
-		player_xp = player_xp % 100
+	if player_xp >= xp_cap :
+		player_xp = player_xp % xp_cap
 		player_lvl += 1
 		xp_cap += 20 + 10*player_lvl
 	print("Xp: " + str(player_xp))
