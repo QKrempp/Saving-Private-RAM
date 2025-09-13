@@ -6,13 +6,14 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
-@onready var	 animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
 
 var last_offset := 0.0
 var _fade_tween: Tween # pour éviter les tweens qui se chevauchent
 
 var player_xp = 0
 var player_lvl = 0
+var xp_cap = 20
 
 signal shoot_bullet
 
@@ -85,4 +86,5 @@ func _on_enemy_killed(entity_xp_amount: int) -> void:
 	if player_xp >= 100:
 		player_xp = player_xp % 100
 		player_lvl += 1
+		xp_cap += 20 + 10*player_lvl
 	print("Xp: " + str(player_xp))
