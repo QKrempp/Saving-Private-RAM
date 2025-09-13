@@ -1,4 +1,4 @@
-extends CountableEntity
+class_name MainCharacter extends CountableEntity
 
 const SPEED: int = 100
 const BULLET: PackedScene = preload("res://Bullet.tscn")
@@ -10,6 +10,9 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 
 var last_offset := 0.0
 var _fade_tween: Tween # pour éviter les tweens qui se chevauchent
+
+var player_xp = 0
+var player_lvl = 0
 
 signal shoot_bullet
 
@@ -76,3 +79,10 @@ func _physics_process(_delta: float) -> void:
 		audio.play()
 
 	move_and_slide()
+	
+func _on_enemy_killed(entity_xp_amount: int) -> void:
+	player_xp += entity_xp_amount
+	if player_xp >= 100:
+		player_xp = 0
+		player_lvl += 1
+	print("Xp: " + str(player_xp))
