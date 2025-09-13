@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jgt14cqrefwx" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://dbygwy3fhqf8e" path="res://Art/Circle.png" id="1_xhfnw"]
-[ext_resource type="AudioStream" uid="uid://c16alwrnlwfj" path="res://Sound Assets/Sounds/Shotgun_Shot-001.wav" id="3_e80uo"]
+[ext_resource type="AudioStream" uid="uid://rmpmag0gpn3o" path="res://Sound Assets/Sounds/bruit_de_balle.mp3" id="3_e80uo"]
 [ext_resource type="AudioStream" uid="uid://ch6da2eebolar" path="res://Sound Assets/Sounds/buits_de_pas.mp3" id="4_cxr5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
@@ -25,6 +25,7 @@ one_shot = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_e80uo")
+max_polyphony = 3
 
 [node name="BruitsDePas" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_cxr5p")
