@@ -1,5 +1,6 @@
-extends CountableEntity
+class_name Ennemy extends CountableEntity
 
+const SPEED = 50
 var health = 10
 
 func _physics_process(_delta: float) -> void:
@@ -13,3 +14,10 @@ func hit() -> void:
 	if not health:
 		entity_destroyed.emit()
 		queue_free()
+
+
+func start(start_pos: Vector2, direction: Vector2) -> void:
+	global_position = start_pos
+	rotation = direction.angle()
+	velocity = direction * SPEED
+	

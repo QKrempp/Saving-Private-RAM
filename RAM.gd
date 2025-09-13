@@ -10,6 +10,10 @@ func _on_shoot_bullet(bullet: Bullet) -> void:
 	bullet.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
 	_on_countable_entity_spawned()
 
+func _on_ennemy_spawned(ennemy: Ennemy) -> void:
+	ennemy.entity_destroyed.connect(_on_countable_entity_destroyed.bind())
+	_on_countable_entity_spawned()
+
 func _on_countable_entity_spawned() -> void:
 	used_ram += 1
 	refresh_ram_counter()
