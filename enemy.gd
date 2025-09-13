@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 
 func hit() -> void:
 	health -= 1
-	if not health:
+	if health <= 0 :
 		entity_destroyed.emit()
 		queue_free()
 
