@@ -74,7 +74,7 @@ func _physics_process(_delta: float) -> void:
 		var inst: Bullet = BULLET.instantiate()
 		var start_pos: Vector2 = global_position
 		var direction: Vector2 = start_pos.direction_to(mouse_pos)
-		get_owner().add_child(inst)
+		get_tree().current_scene.add_child(inst) # selon ta scène, get_parent() ou get_tree().current_scene peut être plus sûr
 		inst.start(start_pos, direction)
 		shoot_bullet.emit(inst)
 		_fire_rate.start()
@@ -85,7 +85,7 @@ func _physics_process(_delta: float) -> void:
 func _on_enemy_killed(entity_xp_amount: int) -> void:
 	player_xp += entity_xp_amount
 	if player_xp >= xp_cap :
-		player_xp = 0
+		player_xp = player_xp % xp_cap
 		player_lvl += 1
 		xp_cap += 20 + 10*player_lvl
 		emit_signal("level_up")

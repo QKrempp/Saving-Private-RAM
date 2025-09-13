@@ -4,24 +4,31 @@ const SPEED = 50
 var health = 2
 var xp_amount = 5
 
-@onready var	 animated_zombie1_sprite:AnimatedSprite2D = $AnimatedSprite2D
+const BLOOD_SPLATTER = preload("res://BloodSplatter.tscn")
+
+@onready var animated_zombie1_sprite:AnimatedSprite2D = $AnimatedSprite2D
 
 func _physics_process(_delta: float) -> void:
 	for index in range(get_slide_collision_count()):
 		var collision = get_slide_collision(index)
 		if collision and collision.get_collider() and collision.get_collider().is_in_group("bullets"):
-				hit()
+				var bullet = collision.get_collider()
+				hit(bullet)
+				bullet.entity_destroyed.emit()
+				bullet.queue_free()
 
 	if velocity != Vector2.ZERO:
 		animated_zombie1_sprite.play("WalkZombie1")
 	else:
 		animated_zombie1_sprite.play("IdleZombie1")
 	move_and_slide()
-	move_and_slide()
 
-func hit() -> void:
+func hit(bullet: Bullet) -> void:
 	health -= 1
-	if health <= 0 :
+	var inst: BloodSplatter = BLOOD_SPLATTER.instantiate()
+	inst.start(global_position, bullet.rotation)
+	get_tree().current_scene.add_child(inst)
+	if health <= 0:
 		entity_destroyed.emit()
 		queue_free()
 

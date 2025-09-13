@@ -9,6 +9,6 @@ signal enemy_spawned
 func _on_spawn_timer_timeout() -> void:
 	var spawn_position = _spawn_area_shape.global_position
 	var inst = ENEMY.instantiate()
-	get_owner().add_child(inst)
+	get_tree().current_scene.add_child(inst)
 	inst.start(spawn_position, Vector2.from_angle(randf()))
 	enemy_spawned.emit(inst)
