@@ -1,5 +1,8 @@
 class_name World extends TileMapLayer
 
+const SPAWNER: PackedScene = preload("res://EnemySpawner.tscn")
+const TILE_SIZE := 140;
+
 @export var width: int = 30
 @export var height: int = 50
 @export var wall_probability: float = 0.55  # proba initiale de mur
@@ -7,20 +10,30 @@ class_name World extends TileMapLayer
 @export var connect_regions: bool = true     # relier toutes les zones vides
 @export var keep_largest_only: bool = false  # si true, supprime les petites zones au lieu de les relier
 
-var player_pos_grid = Vector2.ZERO
-var player_pixel_pos = Vector2.ZERO
+var player_pos_grid = Vector2i.ZERO
+var player_pixel_pos = Vector2i.ZERO
 
 var grid: Array = []  # grid[y][x] = 0 (vide) ou 1 (mur)
-
+var rooms: Array = [] 
 
 func _ready() -> void:
 	generate()
 	render_map()
-	var player_pos_array = _region_center(get_largest_region())
-	player_pos_grid = random_pos()
-	player_pixel_pos = Vector2(player_pos_grid.x * 140, player_pos_grid.y * 140)
-	print_grid() 
+	sort_regions_by_size()
+	var player_pos_array = _region_center(rooms[0])
+	#player_pos_grid = random_pos()
+	player_pos_grid = Vector2i(player_pos_array[0], player_pos_array[1])
+	player_pixel_pos = Vector2i(player_pos_grid.x * TILE_SIZE, player_pos_grid.y * TILE_SIZE)
+	#print_grid() 
 	
+	
+func put_spawner_in_regions():
+	for region in rooms.slice(1):
+		var spawner = SPAWNER.instantiate()
+		var pos = _region_center(region)
+		spawner.global_position = Vector2(pos.x * TILE_SIZE, pos.y * TILE_SIZE)
+		get_tree().current_scene.add_child(spawner)
+
 func random_pos() -> Vector2:
 	var count := 0
 	while count < 1000:
@@ -50,6 +63,7 @@ func generate(p_width: int = -1, p_height: int = -1, p_wall_probability: float =
 	for i in smooth_steps:
 		grid = _simulate_step(grid)
 
+	rooms = _get_regions_of(0)
 	_set_borders_as_walls(grid)
 
 	if connect_regions:
@@ -154,12 +168,10 @@ func _flood_fill(start: Vector2i, value: int, visited: Dictionary) -> Array:
 func _in_bounds(p: Vector2i) -> bool:
 	return p.x >= 0 and p.y >= 0 and p.y < grid.size() and p.x < grid[0].size()
 
-func get_largest_region() -> Array:
-	var floor_regions := _get_regions_of(0)
-	if floor_regions.is_empty():
+func sort_regions_by_size():
+	if rooms.is_empty():
 		return []
-	floor_regions.sort_custom(func(a, b): return a.size() > b.size())
-	return floor_regions[0]
+	rooms.sort_custom(func(a, b): return a.size() > b.size())
 
 func _connect_all_regions() -> void:
 	var regions := _get_regions_of(0)
