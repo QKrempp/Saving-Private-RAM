@@ -14,7 +14,7 @@ const SPAWNER: PackedScene = preload("res://EnemySpawner.tscn")
 var player_pos_grid = Vector2i.ZERO
 var player_pixel_pos = Vector2i.ZERO
 
-const TILE_SIZE := 140
+const TILE_SIZE := 70
 
 var grid: Array = []  # grid[y][x] = 0 (vide) ou 1 (mur)
 var rooms: Array = [] 
@@ -52,9 +52,8 @@ func render_map():
 	var world = get_children().get(1)
 	for y in range(0, height):
 		for x in range(width):
-			floor.set_cell(Vector2(x, y), 0, Vector2(0, 0))
-			if grid[y][x] == 1:
-				world.set_cell(Vector2(x, y), 2, Vector2(0, 0))
+			floor.render(grid, x, y)
+			world.render(grid, x, y)
 
 func generate(p_width: int = -1, p_height: int = -1, p_wall_probability: float = -1.0, p_smooth_steps: int = -1) -> void:
 	# Paramètres

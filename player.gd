@@ -84,8 +84,6 @@ func _on_enemy_killed(entity_xp_amount: int) -> void:
 		player_lvl += 1
 		xp_cap += 20 + 5 * player_lvl
 		emit_signal("level_up")
-	print("Xp: " + str(player_xp))
-	
 
 func _shoot_bullets(mouse_pos, bullet_number) -> void:
 	var start_pos: Vector2 = global_position
