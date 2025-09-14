@@ -38,7 +38,7 @@ func hit(bullet: Bullet) -> void:
 	inst.start(global_position, bullet.rotation)
 	get_tree().current_scene.add_child(inst)
 	if health <= 0:
-		#entity_destroyed.emit()
+		entity_destroyed.emit()
 		queue_free()
 
 
@@ -54,9 +54,7 @@ func _on_smell_body_entered(body: Node2D) -> void:
 
 
 func _on_wander_timeout() -> void:
-	print("Time is up!")
 	if not target:
-		print("No target yet")
 		var angle = randf_range(0, 2 * PI)
 		velocity = SPEED * Vector2.from_angle(angle)
 		rotation = angle

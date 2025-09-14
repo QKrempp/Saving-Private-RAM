@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bl4iswbwybro2"]
+[gd_scene load_steps=21 format=3 uid="uid://bl4iswbwybro2"]
 
 [ext_resource type="Script" uid="uid://jgt14cqrefwx" path="res://player.gd" id="1_kpjcp"]
 [ext_resource type="Texture2D" uid="uid://cyqmaqj3dvr3c" path="res://Art/SpriteRyan/Ryan_F1.png" id="2_l6ohk"]
@@ -87,6 +87,17 @@ animations = [{
 "speed": 11.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_r3kul"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jatw7"]
+gradient = SubResource("Gradient_r3kul")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 motion_mode = 1
@@ -99,6 +110,7 @@ scale = Vector2(3, 5)
 shape = SubResource("CircleShape2D_kpjcp")
 
 [node name="AnimatedSprite2D_Weapon1" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(41, 0)
 rotation = 2.35619
 scale = Vector2(0.5, 0.5)
@@ -106,6 +118,7 @@ sprite_frames = SubResource("SpriteFrames_itxgx")
 animation = &"Idle"
 
 [node name="AnimatedSprite2D_Character" type="AnimatedSprite2D" parent="."]
+z_index = 1
 rotation = 2.35619
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_cgsek")
@@ -124,3 +137,6 @@ max_polyphony = 3
 stream = ExtResource("4_cxr5p")
 max_polyphony = 2
 parameters/looping = true
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = SubResource("GradientTexture2D_jatw7")

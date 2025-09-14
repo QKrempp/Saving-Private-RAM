@@ -21,7 +21,7 @@ func _on_countable_entity_destroyed(weight: int) -> void:
 func refresh_ram_counter() -> void:
 	var ram_pct: float = float(used_ram) / float(total_ram)
 	if ram_pct > ram_threshold_warning:
-		fps = int(60.0 * (1.0 - ram_pct) / (1.0 - ram_threshold_warning))
+		fps = 10 + int(50.0 * (1.0 - ram_pct) / (1.0 - ram_threshold_warning))
 		add_theme_color_override("font_color", Color.RED)
 	else:
 		fps = 60

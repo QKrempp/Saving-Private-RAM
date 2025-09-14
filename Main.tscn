@@ -52,6 +52,7 @@ texture_region_size = Vector2i(140, 140)
 
 [sub_resource type="TileSet" id="TileSet_bg4s2"]
 tile_size = Vector2i(140, 140)
+occlusion_layer_0/light_mask = 1
 sources/0 = SubResource("TileSetAtlasSource_c6i3y")
 sources/1 = SubResource("TileSetAtlasSource_c2ibq")
 sources/2 = SubResource("TileSetAtlasSource_j4qnp")
@@ -371,3 +372,7 @@ stream = ExtResource("4_fos0i")
 autoplay = true
 
 [node name="LevelUpUi" parent="." instance=ExtResource("8_trn2v")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(1, 0.797168, 0.986903, 1)
+blend_mode = 1

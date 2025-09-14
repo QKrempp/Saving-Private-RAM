@@ -2,6 +2,8 @@ class_name GridManager extends Node
 
 const SPAWNER: PackedScene = preload("res://EnemySpawner.tscn")
 
+@onready var _main_room : Node2D = $/root/Room
+
 @export var width: int = 30
 @export var height: int = 50
 @export var wall_probability: float = 0.55  # proba initiale de mur
@@ -33,6 +35,7 @@ func put_spawner_in_regions():
 		var spawner = SPAWNER.instantiate()
 		var pos = _region_center(region)
 		spawner.global_position = Vector2(pos.x * TILE_SIZE, pos.y * TILE_SIZE)
+		spawner.enemy_spawned.connect(_main_room._on_enemy_spawned.bind())
 		get_tree().current_scene.add_child(spawner)
 
 func random_pos() -> Vector2:
