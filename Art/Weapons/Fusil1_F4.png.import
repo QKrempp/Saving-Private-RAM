@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmm6t5snb547c"
-path="res://.godot/imported/Sang1.png-c9e2788f23442b6d69f0b17ed9917a69.ctex"
+uid="uid://dcypjg5u0u5we"
+path="res://.godot/imported/Fusil1_F4.png-ed508693f9fc8e3c368b23ee250417c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Sang1.png"
-dest_files=["res://.godot/imported/Sang1.png-c9e2788f23442b6d69f0b17ed9917a69.ctex"]
+source_file="res://Art/Weapons/Fusil1_F4.png"
+dest_files=["res://.godot/imported/Fusil1_F4.png-ed508693f9fc8e3c368b23ee250417c6.ctex"]
 
 [params]
 

@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://b6ex6sllvaay6" path="res://xpbar.gd" id="4_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://ddu8ti7s0a4a0" path="res://EnemySpawner.tscn" id="4_cm0pq"]
 [ext_resource type="AudioStream" uid="uid://d0cxcsryo5c05" path="res://Sound Assets/Music/bg_ambience_music.mp3" id="4_fos0i"]
-
 [ext_resource type="Script" uid="uid://cl2k87jeye8dw" path="res://level.gd" id="5_lgr22"]
 [ext_resource type="PackedScene" uid="uid://cofm2bjldku1x" path="res://LevelUpUi.tscn" id="8_trn2v"]
 
