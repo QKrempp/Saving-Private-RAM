@@ -6,13 +6,13 @@
 [ext_resource type="Script" uid="uid://5attjqatjtlm" path="res://grid_manager.gd" id="2_j4qnp"]
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://ndwly0t6aavc" path="res://Art/Envrionment/Mur1AngleOblique.png" id="3_c2ibq"]
-[ext_resource type="Script" path="res://xpbar.gd" id="4_3dxm6"]
-[ext_resource type="Script" path="res://floor.gd" id="4_fpfj3"]
+[ext_resource type="Script" uid="uid://b6ex6sllvaay6" path="res://xpbar.gd" id="4_3dxm6"]
+[ext_resource type="Script" uid="uid://60uwap74m22a" path="res://floor.gd" id="4_fpfj3"]
 [ext_resource type="Texture2D" uid="uid://b1l57wpd4107s" path="res://Art/Envrionment/Mur1Droit.png" id="4_j4qnp"]
 [ext_resource type="Texture2D" uid="uid://dh4vp8bdrhwqm" path="res://Art/Envrionment/Sol1_V2_70.png" id="4_kjvhd"]
 [ext_resource type="Texture2D" uid="uid://boxk6tw6hiu3c" path="res://Art/Envrionment/Sol1_V1_70.png" id="4_sc1dx"]
 [ext_resource type="Texture2D" uid="uid://ctysfe28632ch" path="res://Art/Envrionment/Sol1_V3_70.png" id="5_5tuhn"]
-[ext_resource type="Script" path="res://world.gd" id="5_20pc6"]
+[ext_resource type="Script" uid="uid://c1upjx4hiun8o" path="res://world.gd" id="5_20pc6"]
 [ext_resource type="Texture2D" uid="uid://s3blaf2nsn0q" path="res://Art/Envrionment/void.png" id="5_c6i3y"]
 [ext_resource type="Texture2D" uid="uid://be7l8rb5xb7jf" path="res://Art/Envrionment/Mur1PetitAngle.png" id="5_fpfj3"]
 [ext_resource type="Script" path="res://level.gd" id="5_lgr22"]
@@ -48,6 +48,7 @@ sources/2 = SubResource("TileSetAtlasSource_devvj")
 texture = ExtResource("5_c6i3y")
 texture_region_size = Vector2i(70, 70)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -35, 35, -35, 35, 35, -35, 35)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j4qnp"]
 texture = ExtResource("4_j4qnp")
@@ -136,7 +137,8 @@ texture_region_size = Vector2i(70, 70)
 
 [sub_resource type="TileSet" id="TileSet_bg4s2"]
 tile_size = Vector2i(70, 70)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_j4qnp")
 sources/0 = SubResource("TileSetAtlasSource_c2ibq")
 sources/2 = SubResource("TileSetAtlasSource_fpfj3")
@@ -149,6 +151,14 @@ bg_color = Color(4.33177e-06, 0.667755, 0.803827, 1)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_r0du0")
+
+[node name="BackGround" type="ColorRect" parent="."]
+z_index = -999
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = 5000.0
+offset_bottom = 5000.0
+color = Color(0, 0, 0, 1)
 
 [node name="GridManager" type="Node" parent="."]
 script = ExtResource("2_j4qnp")
