@@ -12,7 +12,7 @@ const SPAWNER: PackedScene = preload("res://EnemySpawner.tscn")
 var player_pos_grid = Vector2i.ZERO
 var player_pixel_pos = Vector2i.ZERO
 
-const TILE_SIZE := 140
+const TILE_SIZE := 70
 
 var grid: Array = []  # grid[y][x] = 0 (vide) ou 1 (mur)
 var rooms: Array = [] 
