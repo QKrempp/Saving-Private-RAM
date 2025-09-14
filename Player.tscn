@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://ckpuu5d07ftog" path="res://Art/SpriteRyan/Ryan_F8.png" id="9_itxgx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpjcp"]
-radius = 7.07107
+radius = 6.07
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_itxgx"]
 animations = [{
@@ -103,7 +103,8 @@ fill_to = Vector2(0.5, 0)
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 motion_mode = 1
-safe_margin = 4.0
+wall_min_slide_angle = 3.14159
+safe_margin = 6.0
 script = ExtResource("1_kpjcp")
 weight = 0
 
