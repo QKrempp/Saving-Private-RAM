@@ -1,8 +1,8 @@
 class_name Enemy extends CountableEntity
 
 const SPEED = 50
-var health = 2
-var xp_amount = 5
+@export var health = 2
+@export var xp_amount = 5
 
 const BLOOD_SPLATTER = preload("res://BloodSplatter.tscn")
 
@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 func hit(bullet: Bullet) -> void:
 	health -= 1
 	var inst: BloodSplatter = BLOOD_SPLATTER.instantiate()
-	inst.blood_splattered.connect(_ram._on_countable_entity_spawned.bind(1))
+	#inst.blood_splattered.connect(_ram._on_countable_entity_spawned.bind(1))
 	inst.start(global_position, bullet.rotation)
 	get_tree().current_scene.add_child(inst)
 	if health <= 0:

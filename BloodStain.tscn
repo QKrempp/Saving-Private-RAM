@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7dyb6jgng7p0"]
+
+[ext_resource type="Texture2D" uid="uid://rqqvkquduycp" path="res://Art/FX/Sang2.png" id="1_h5wop"]
+[ext_resource type="Script" uid="uid://b71h00olpm1mq" path="res://blood_stain.gd" id="2_swe2q"]
+
+[node name="Node2D" type="Sprite2D"]
+z_index = -1
+rotation = 0.947714
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_h5wop")
+script = ExtResource("2_swe2q")

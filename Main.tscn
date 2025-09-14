@@ -257,6 +257,7 @@ script = ExtResource("5_20pc6")
 
 [node name="MainCharacter" parent="." instance=ExtResource("1_glv2v")]
 position = Vector2(161, 89)
+weight = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
 
@@ -285,7 +286,10 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Coucou"
 script = ExtResource("2_uu6xs")
-total_ram = 1024
+total_ram = 1024.0
+
+[node name="UpdateTimer" type="Timer" parent="Overlay/RAM"]
+autostart = true
 
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_c6i3y")
@@ -296,3 +300,5 @@ autoplay = true
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(1, 0.797168, 0.986903, 1)
 blend_mode = 1
+
+[connection signal="timeout" from="Overlay/RAM/UpdateTimer" to="Overlay/RAM" method="_on_update_timer_timeout"]

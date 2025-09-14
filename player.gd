@@ -1,6 +1,7 @@
 class_name MainCharacter extends CountableEntity
 
 const BULLET: PackedScene = preload("res://Bullet.tscn")
+const BLOOD: PackedScene = preload("res://BloodStain.tscn")
 
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
@@ -16,6 +17,8 @@ var bullet_number = 1
 var player_xp = 0
 var player_lvl = 0
 var xp_cap = 20
+
+@export var has_karsher: bool = true
 
 signal shoot_bullet
 signal level_up
@@ -75,6 +78,12 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("ui_left_click") and _fire_rate.is_stopped():
 		_shoot_bullets(mouse_pos, bullet_number)
 
+	for index in range(get_slide_collision_count()):
+		var collision = get_slide_collision(index)
+		if collision and collision.get_collider() and collision.get_collider().is_in_group("enemies"):
+			var enemy = collision.get_collider()
+			hit()
+
 	move_and_slide()
 	
 func _on_enemy_killed(entity_xp_amount: int) -> void:
@@ -109,3 +118,9 @@ func _shoot_bullets(mouse_pos, bullet_number) -> void:
 	_fire_rate.start()
 	audio.play()
 	animated_weapon_sprite.play("Shoot")
+
+func hit() -> void:
+	var inst = BLOOD.instantiate()
+	var noise_vec: Vector2 = 20 * (Vector2(randf(), randf()) - 0.5 * Vector2.ONE)
+	inst.start(global_position + noise_vec, Vector2.from_angle(randf_range(0, 2 * PI)))
+	get_tree().current_scene.add_child(inst)
