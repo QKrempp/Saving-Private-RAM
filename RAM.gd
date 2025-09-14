@@ -9,7 +9,7 @@ var fps: int = 60
 func _ready() -> void:
 	add_theme_color_override("font_color", default_text_color)
 	upate_overlay_text()
-	
+
 func _on_countable_entity_spawned(weight: int) -> void:
 	used_ram += weight
 	refresh_ram_counter()
