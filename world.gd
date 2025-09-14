@@ -100,13 +100,30 @@ var map_sprite = {
 	#- left
 	74: Vector2i(5, 2),
 	75: Vector2i(5, 2),
+	78: Vector2i(5, 2),
+	79: Vector2i(5, 2),
 	106: Vector2i(5, 2),
 	107: Vector2i(5, 2),
+	202: Vector2i(5, 2),
+	207: Vector2i(5, 2),
+	110: Vector2i(5, 2),
+	111: Vector2i(5, 2),
+	234: Vector2i(5, 2),
+	235: Vector2i(5, 2),
+	238: Vector2i(5, 2),
+	239: Vector2i(5, 2),
+	
 	#- right
 	82: Vector2i(5, 0),
 	86: Vector2i(5, 0),
+	114: Vector2i(5, 0),
 	210: Vector2i(5, 0),
+	211: Vector2i(5, 0),
 	214: Vector2i(5, 0),
+	215: Vector2i(5, 0),
+	242: Vector2i(5, 0),
+	246: Vector2i(5, 0),
+	247: Vector2i(5, 0),
 	
 	#Mur1Double
 	#vert
@@ -180,10 +197,5 @@ func compute_orientation(grid: Array, x: int, y: int) -> Vector2i:
 		bottom_left = true
 	var neighbors = [top_left, top, top_right, left, right, bottom_left, bottom, bottom_right]
 	var key = booleens_vers_entier(neighbors)
-	if key == 2:
-		print("resume")
-		print(neighbors)
-		print(key)
-		print(map_sprite.get(key, Vector2i(0, 0)))
 	return map_sprite.get(key, Vector2i(0, 0))
 	

@@ -319,6 +319,7 @@ autoplay = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 color = Color(1, 0.797168, 0.986903, 1)
+energy = 0.5
 blend_mode = 1
 
 [connection signal="timeout" from="Overlay/RAM/UpdateTimer" to="Overlay/RAM" method="_on_update_timer_timeout"]
