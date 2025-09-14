@@ -1,6 +1,6 @@
 class_name World extends TileMapLayer
 
-@export var width: int = 30
+@export var width: int = 50
 @export var height: int = 50
 @export var wall_probability: float = 0.55  # proba initiale de mur
 @export var smooth_steps: int = 5            # itérations d'automate cellulaire
@@ -18,7 +18,7 @@ func _ready() -> void:
 	render_map()
 	var player_pos_array = _region_center(get_largest_region())
 	player_pos_grid = random_pos()
-	player_pixel_pos = Vector2(player_pos_grid.x * 140, player_pos_grid.y * 140)
+	#player_pixel_pos = Vector2(player_pos_grid.x * 140, player_pos_grid.y * 140)
 	print_grid() 
 	
 func random_pos() -> Vector2:

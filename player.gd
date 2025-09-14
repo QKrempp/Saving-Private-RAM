@@ -5,7 +5,7 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
-@onready var animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_ryan_sprite: AnimatedSprite2D = $AnimatedSprite2D
 #@onready var _ram : RamOverlay = $/root/Room/Overlay/RAM
 
 var last_offset := 0.0
