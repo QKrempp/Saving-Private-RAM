@@ -114,16 +114,16 @@ var map_sprite = {
 	239: Vector2i(5, 2),
 	
 	#- right
-	82: Vector2i(5, 0),
-	86: Vector2i(5, 0),
-	114: Vector2i(5, 0),
-	210: Vector2i(5, 0),
-	211: Vector2i(5, 0),
-	214: Vector2i(5, 0),
-	215: Vector2i(5, 0),
-	242: Vector2i(5, 0),
-	246: Vector2i(5, 0),
-	247: Vector2i(5, 0),
+	82: Vector2i(5, 3),
+	86: Vector2i(5, 3),
+	114: Vector2i(5, 3),
+	210: Vector2i(5, 3),
+	211: Vector2i(5, 3),
+	214: Vector2i(5, 3),
+	215: Vector2i(5, 3),
+	242: Vector2i(5, 3),
+	246: Vector2i(5, 3),
+	247: Vector2i(5, 3),
 	
 	#Mur1Double
 	#vert
@@ -153,6 +153,45 @@ var map_sprite = {
 	227: Vector2i(6, 1),
 	230: Vector2i(6, 1),
 	231: Vector2i(6, 1),
+	
+	#MurPetitAngle2
+	#- top
+	5: Vector2i(7, 0),
+	#- bottom
+	160: Vector2i(7, 1),
+	#- left
+	33: Vector2i(7, 2),
+	#- right
+	132: Vector2i(7, 3),
+	
+	#MurPetitAngle3
+	#- bottom-right
+	37: Vector2i(8, 0),
+	39: Vector2i(8, 0),
+	45: Vector2i(8, 0),
+	#- bottom-left
+	133: Vector2i(8, 2),
+	135: Vector2i(8, 2),
+	149: Vector2i(8, 2),
+	
+	#- top-left
+	164: Vector2i(8, 3),
+	180: Vector2i(8, 3),
+	228: Vector2i(8, 3),
+
+	#- top-right
+	161: Vector2i(8, 1),
+	169: Vector2i(8, 1),
+	225: Vector2i(8, 1),
+	
+	#Mur1PetitAngle4
+	165: Vector2i(9, 0),
+	
+	#Mur1PetitAngleDoubleDiag
+	#- top-left - bootom-right
+	129: Vector2i(10, 0),
+	#- top-right - bootom-lefyt
+	36: Vector2i(10, 1),
 }
 
 func booleens_vers_entier(booleens: Array) -> int:
