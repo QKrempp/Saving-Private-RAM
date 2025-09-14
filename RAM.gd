@@ -39,7 +39,7 @@ func refresh_ram_counter() -> void:
 
 func upate_overlay_text() -> void:
 	text = "Position X: %.1f, Y: %.1f\nRotation: %.1f°\nAvailable RAM: %.1f / %.1f Mo\nFPS: %d" % [player_x, player_y, player_r, used_ram, total_ram, fps]
-	
+
 func _on_update_timer_timeout() -> void:
 	player_x = _player.global_position.x
 	player_y = _player.global_position.y

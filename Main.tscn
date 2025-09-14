@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://5attjqatjtlm" path="res://grid_manager.gd" id="2_j4qnp"]
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://ndwly0t6aavc" path="res://Art/Envrionment/Mur1AngleOblique.png" id="3_c2ibq"]
-[ext_resource type="Script" uid="uid://b6ex6sllvaay6" path="res://xpbar.gd" id="4_3dxm6"]
+[ext_resource type="Script" path="res://xpbar.gd" id="4_3dxm6"]
 [ext_resource type="Script" uid="uid://60uwap74m22a" path="res://floor.gd" id="4_fpfj3"]
 [ext_resource type="Texture2D" uid="uid://b1l57wpd4107s" path="res://Art/Envrionment/Mur1Droit.png" id="4_j4qnp"]
 [ext_resource type="Texture2D" uid="uid://dh4vp8bdrhwqm" path="res://Art/Envrionment/Sol1_V2_70.png" id="4_kjvhd"]
@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://c1upjx4hiun8o" path="res://world.gd" id="5_20pc6"]
 [ext_resource type="Texture2D" uid="uid://s3blaf2nsn0q" path="res://Art/Envrionment/void.png" id="5_c6i3y"]
 [ext_resource type="Texture2D" uid="uid://be7l8rb5xb7jf" path="res://Art/Envrionment/Mur1PetitAngle.png" id="5_fpfj3"]
-[ext_resource type="Script" uid="uid://cl2k87jeye8dw" path="res://level.gd" id="5_lgr22"]
+[ext_resource type="Script" path="res://level.gd" id="5_lgr22"]
 [ext_resource type="PackedScene" uid="uid://cofm2bjldku1x" path="res://LevelUpUi.tscn" id="8_trn2v"]
 [ext_resource type="Texture2D" uid="uid://1fmw2quja0c0" path="res://Art/Envrionment/Mur1DoubleExtremite.png" id="12_5tuhn"]
 [ext_resource type="AudioStream" uid="uid://xymbmmgm0a11" path="res://Sound Assets/Music/bg_loop.wav" id="12_c6i3y"]
@@ -309,6 +309,7 @@ script = ExtResource("2_uu6xs")
 total_ram = 1024.0
 
 [node name="UpdateTimer" type="Timer" parent="Overlay/RAM"]
+wait_time = 0.5
 autostart = true
 
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]

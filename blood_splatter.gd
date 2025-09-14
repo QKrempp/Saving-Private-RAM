@@ -7,6 +7,5 @@ func start(start_pos: Vector2, orientation: float) -> void:
 	rotation = orientation + (PI * 3/4)
 	#blood_splattered.emit()
 
-
 func _on_timer_timeout() -> void:
 	queue_free()

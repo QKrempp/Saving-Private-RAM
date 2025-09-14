@@ -5,9 +5,12 @@ var upgrades: Array[Dictionary] = [
 	{ "id": "speed_1",     "name": "Increase Speed by 10%" },
 	{ "id": "fire_rate_1", "name": "Increase Fire Rate by 20%" },
 	{ "id": "spray_shots_1", "name": "Increase bullets shot by 1 but decreases accuracy" },
+	{ "id": "kaarsher_1", "name": "Clear all blood stains"}
 ]
 
 const BULLET: PackedScene = preload("res://Bullet.tscn")
+
+signal clear_blood
 
 @onready var _overlay_ram : RamOverlay = $Overlay/RAM
 @onready var _main_character : MainCharacter = $MainCharacter
@@ -55,5 +58,7 @@ func apply_upgrade(id: String) -> void:
 			_main_character._fire_rate.wait_time *= 0.8
 		"spray_shots_1":
 			_main_character.bullet_number += 1
+		"kaarsher_1":
+			clear_blood.emit()
 		_:
 			push_warning("Upgrade inconnue: %s" % id)
