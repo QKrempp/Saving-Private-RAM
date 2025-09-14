@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://rqfac7yewprr"]
+[gd_scene load_steps=57 format=3 uid="uid://rqfac7yewprr"]
 
 [ext_resource type="PackedScene" uid="uid://bl4iswbwybro2" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://cmsp16brd2o8w" path="res://main.gd" id="1_r0du0"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://5attjqatjtlm" path="res://grid_manager.gd" id="2_j4qnp"]
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://ndwly0t6aavc" path="res://Art/Envrionment/Mur1AngleOblique.png" id="3_c2ibq"]
-[ext_resource type="Script" path="res://xpbar.gd" id="4_3dxm6"]
+[ext_resource type="Script" uid="uid://b6ex6sllvaay6" path="res://xpbar.gd" id="4_3dxm6"]
 [ext_resource type="Script" uid="uid://60uwap74m22a" path="res://floor.gd" id="4_fpfj3"]
 [ext_resource type="Texture2D" uid="uid://b1l57wpd4107s" path="res://Art/Envrionment/Mur1Droit.png" id="4_j4qnp"]
 [ext_resource type="Texture2D" uid="uid://dh4vp8bdrhwqm" path="res://Art/Envrionment/Sol1_V2_70.png" id="4_kjvhd"]
@@ -15,10 +15,11 @@
 [ext_resource type="Script" uid="uid://c1upjx4hiun8o" path="res://world.gd" id="5_20pc6"]
 [ext_resource type="Texture2D" uid="uid://s3blaf2nsn0q" path="res://Art/Envrionment/void.png" id="5_c6i3y"]
 [ext_resource type="Texture2D" uid="uid://be7l8rb5xb7jf" path="res://Art/Envrionment/Mur1PetitAngle.png" id="5_fpfj3"]
-[ext_resource type="Script" path="res://level.gd" id="5_lgr22"]
+[ext_resource type="Script" uid="uid://cl2k87jeye8dw" path="res://level.gd" id="5_lgr22"]
 [ext_resource type="PackedScene" uid="uid://cofm2bjldku1x" path="res://LevelUpUi.tscn" id="8_trn2v"]
 [ext_resource type="Texture2D" uid="uid://1fmw2quja0c0" path="res://Art/Envrionment/Mur1DoubleExtremite.png" id="12_5tuhn"]
 [ext_resource type="AudioStream" uid="uid://xymbmmgm0a11" path="res://Sound Assets/Music/bg_loop.wav" id="12_c6i3y"]
+[ext_resource type="Texture2D" uid="uid://c6kb8p4w5fprw" path="res://Art/Envrionment/Mur1Double.png" id="13_2gh4u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5tuhn"]
 texture = ExtResource("4_sc1dx")
@@ -218,6 +219,24 @@ texture_region_size = Vector2i(70, 70)
 0:0/3/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ny7u2")
 0:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(10.4004, -26.3892, 29.3385, -26.0787, 27.4758, -3.72553, 27.7862, 12.108, 25.9235, 24.8369, -35, 27.0101, -35, -27.0101, -4.81213, -28.5624)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x3yn0"]
+polygon = PackedVector2Array(-26.0787, -35, 27.0101, -35, 26.0787, 35, -27.0101, 35)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_1w2xm"]
+polygon = PackedVector2Array(-35, -26.5, 35, -27.5, 35, 27, -35, 27.5)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bg4s2"]
+texture = ExtResource("13_2gh4u")
+texture_region_size = Vector2i(70, 70)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_x3yn0")
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-27.7862, -35, 27.7862, -35, 26.8549, 35, -26.8548, 35)
+0:0/1 = 1
+0:0/1/transpose = true
+0:0/1/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_1w2xm")
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-35, -27.3205, 35, -27.0101, 35, 26.6996, -35, 27.3205)
+
 [sub_resource type="TileSet" id="TileSet_bg4s2"]
 tile_size = Vector2i(70, 70)
 occlusion_layer_0/light_mask = 1
@@ -229,6 +248,7 @@ sources/2 = SubResource("TileSetAtlasSource_fpfj3")
 sources/3 = SubResource("TileSetAtlasSource_sc1dx")
 sources/4 = SubResource("TileSetAtlasSource_kjvhd")
 sources/5 = SubResource("TileSetAtlasSource_3b0ty")
+sources/6 = SubResource("TileSetAtlasSource_bg4s2")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dxm6"]
 bg_color = Color(4.33177e-06, 0.667755, 0.803827, 1)
