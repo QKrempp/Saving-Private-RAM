@@ -221,7 +221,8 @@ texture_region_size = Vector2i(70, 70)
 [sub_resource type="TileSet" id="TileSet_bg4s2"]
 tile_size = Vector2i(70, 70)
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_j4qnp")
 sources/0 = SubResource("TileSetAtlasSource_c2ibq")
 sources/2 = SubResource("TileSetAtlasSource_fpfj3")
@@ -234,6 +235,14 @@ bg_color = Color(4.33177e-06, 0.667755, 0.803827, 1)
 
 [node name="Room" type="Node2D"]
 script = ExtResource("1_r0du0")
+
+[node name="BackGround" type="ColorRect" parent="."]
+z_index = -999
+offset_left = -5000.0
+offset_top = -5000.0
+offset_right = 5000.0
+offset_bottom = 5000.0
+color = Color(0, 0, 0, 1)
 
 [node name="GridManager" type="Node" parent="."]
 script = ExtResource("2_j4qnp")
