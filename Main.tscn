@@ -338,7 +338,6 @@ script = SubResource("GDScript_c6i3y")
 position = Vector2(161, 89)
 
 [node name="Camera2D" type="Camera2D" parent="MainCharacter"]
-zoom = Vector2(0.1, 0.1)
 
 [node name="Overlay" type="CanvasLayer" parent="."]
 
