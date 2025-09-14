@@ -411,8 +411,6 @@ autostart = true
 stream = ExtResource("12_c6i3y")
 autoplay = true
 
-[node name="LevelUpUi" parent="." instance=ExtResource("8_trn2v")]
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
 
@@ -425,6 +423,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="LevelUpUi" parent="." instance=ExtResource("8_trn2v")]
 
 [connection signal="high_ram_usage" from="Overlay/RAM" to="." method="_on_ram_high_ram_usage"]
 [connection signal="low_ram_usage" from="Overlay/RAM" to="." method="_on_ram_low_ram_usage"]
