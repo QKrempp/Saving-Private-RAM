@@ -10,6 +10,10 @@ var player_x = 0
 var player_y = 0
 var player_r = 0
 
+signal high_ram_usage
+signal low_ram_usage
+var is_ram_usage_high: bool = false
+
 @onready var _player: MainCharacter = $/root/Room/MainCharacter
 
 func _ready() -> void:
@@ -29,9 +33,13 @@ func refresh_ram_counter() -> void:
 	if ram_pct > ram_threshold_warning:
 		fps = 10 + int(50.0 * (1.0 - ram_pct) / (1.0 - ram_threshold_warning))
 		add_theme_color_override("font_color", Color.RED)
-	else:
+		high_ram_usage.emit()
+		is_ram_usage_high = true
+	elif is_ram_usage_high:
 		fps = 60
 		add_theme_color_override("font_color", default_text_color)
+		low_ram_usage.emit()
+		is_ram_usage_high = false
 	Engine.max_fps = fps
 	if used_ram >= total_ram:
 		var game_scene: PackedScene = load("res://MainMenu.tscn")

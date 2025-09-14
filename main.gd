@@ -14,12 +14,14 @@ signal clear_blood
 @onready var _main_character : MainCharacter = $MainCharacter
 @onready var ui: CanvasLayer = $LevelUpUi
 @onready var world: GridManager = $GridManager
+@onready var _shader: CanvasLayer = $GlitchShader
 
 func _ready() -> void:
 	_main_character.global_position = world.player_pixel_pos
 	rng.randomize()
 	_main_character.level_up.connect(_on_player_level_up.bind())
 	ui.option_chosen.connect(_on_upgrade_chosen)
+	_shader.hide()
 	world.put_spawner_in_regions()
 	
 func _on_boss_win() -> void:
@@ -64,3 +66,10 @@ func apply_upgrade(id: String) -> void:
 			clear_blood.emit()
 		_:
 			push_warning("Upgrade inconnue: %s" % id)
+
+
+func _on_ram_high_ram_usage() -> void:
+	_shader.show()
+
+func _on_ram_low_ram_usage() -> void:
+	_shader.hide()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://rqfac7yewprr"]
+[gd_scene load_steps=74 format=3 uid="uid://rqfac7yewprr"]
 
 [ext_resource type="PackedScene" uid="uid://bl4iswbwybro2" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://cmsp16brd2o8w" path="res://main.gd" id="1_r0du0"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://b4sasg1ug8xsr" path="res://Art/Envrionment/Mur1PetitAngle2.png" id="15_mxvw5"]
 [ext_resource type="Texture2D" uid="uid://cybha60084pux" path="res://Art/Envrionment/Mur1PetitAngle3.png" id="16_xrxkg"]
 [ext_resource type="Texture2D" uid="uid://detx6h6tl3l70" path="res://Art/Envrionment/Mur1PetitAngle4.png" id="17_sqvbp"]
+[ext_resource type="Shader" uid="uid://c2abqtmnwdrp2" path="res://GlitchShader.gdshader" id="25_mxvw5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5tuhn"]
 texture = ExtResource("4_sc1dx")
@@ -340,6 +341,14 @@ sources/10 = SubResource("TileSetAtlasSource_hri7i")
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3dxm6"]
 bg_color = Color(4.33177e-06, 0.667755, 0.803827, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xrxkg"]
+shader = ExtResource("25_mxvw5")
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
+
 [node name="Room" type="Node2D"]
 script = ExtResource("1_r0du0")
 
@@ -407,4 +416,16 @@ autoplay = true
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
 
+[node name="GlitchShader" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="GlitchShader"]
+material = SubResource("ShaderMaterial_xrxkg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="high_ram_usage" from="Overlay/RAM" to="." method="_on_ram_high_ram_usage"]
+[connection signal="low_ram_usage" from="Overlay/RAM" to="." method="_on_ram_low_ram_usage"]
 [connection signal="timeout" from="Overlay/RAM/UpdateTimer" to="Overlay/RAM" method="_on_update_timer_timeout"]
