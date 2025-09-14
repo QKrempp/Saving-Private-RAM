@@ -31,11 +31,15 @@ func _ready() -> void:
 	
 	
 func put_spawner_in_regions():
+	var room_nb = 0
 	for region in rooms.slice(1):
 		var spawner = SPAWNER.instantiate()
 		var pos = _region_center(region)
+		if room_nb == 0:
+			spawner.is_boss_spawner = true
 		spawner.global_position = Vector2(pos.x * TILE_SIZE, pos.y * TILE_SIZE)
 		spawner.enemy_spawned.connect(_main_room._on_enemy_spawned.bind())
+		room_nb += 1
 		get_tree().current_scene.add_child(spawner)
 
 func random_pos() -> Vector2:

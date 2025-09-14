@@ -1,0 +1,170 @@
+[gd_scene load_steps=25 format=3 uid="uid://bsbbpx0lolsx1"]
+
+[ext_resource type="Script" uid="uid://c5f14o7qxp6ka" path="res://boss.gd" id="1_bgi7q"]
+[ext_resource type="Texture2D" uid="uid://da4glexxmaeqy" path="res://Art/SpriteBoss/BossV1_Marche_F1.png" id="2_krdih"]
+[ext_resource type="Texture2D" uid="uid://cppu2aeajdmyu" path="res://Art/SpriteBoss/BossV1_Cri1_F1.png" id="3_5krwi"]
+[ext_resource type="Texture2D" uid="uid://c4nox8crvh67u" path="res://Art/SpriteBoss/BossV1_Cri1_F2.png" id="4_nqfji"]
+[ext_resource type="Texture2D" uid="uid://b8ywb2mpy7846" path="res://Art/SpriteBoss/BossV1_Cri1_F3.png" id="5_q73rv"]
+[ext_resource type="Texture2D" uid="uid://df1rcolqhi0lq" path="res://Art/SpriteBoss/BossV1_Cri1_F4.png" id="6_1ddph"]
+[ext_resource type="Texture2D" uid="uid://dvmeetyq1jx1g" path="res://Art/SpriteBoss/BossV1_Cri1_F5.png" id="7_23vmx"]
+[ext_resource type="Texture2D" uid="uid://crb4r7rukpki2" path="res://Art/SpriteBoss/BossV1_Cri1_F6.png" id="8_scvmp"]
+[ext_resource type="Texture2D" uid="uid://cy70id7jy551v" path="res://Art/SpriteBoss/BossV1_Cri1_F7.png" id="9_50opm"]
+[ext_resource type="Texture2D" uid="uid://qmxygvbrt8lv" path="res://Art/SpriteBoss/BossV1_Cri1_F8.png" id="10_cipi3"]
+[ext_resource type="Texture2D" uid="uid://b83krepiycrqa" path="res://Art/SpriteBoss/BossV1_Cri1_F9.png" id="11_s2y5f"]
+[ext_resource type="Texture2D" uid="uid://7aqch7xnr2df" path="res://Art/SpriteBoss/BossV1_Cri1_F10.png" id="12_ek5sr"]
+[ext_resource type="Texture2D" uid="uid://upt8d31j1mx0" path="res://Art/SpriteBoss/BossV1_Cri1_F11.png" id="13_p7ov1"]
+[ext_resource type="Texture2D" uid="uid://cdgngiiuhg0yk" path="res://Art/SpriteBoss/BossV1_Cri1_F12.png" id="14_cjrl3"]
+[ext_resource type="Texture2D" uid="uid://dllutkxilkbqg" path="res://Art/SpriteBoss/BossV1_Cri1_F13.png" id="15_reuae"]
+[ext_resource type="Texture2D" uid="uid://dyttbg5y4cxdd" path="res://Art/SpriteBoss/BossV1_Cri1_F14.png" id="16_jbgcd"]
+[ext_resource type="Texture2D" uid="uid://bnlajygpi0afe" path="res://Art/SpriteBoss/BossV1_Cri1_F16.png" id="17_umtcc"]
+[ext_resource type="Texture2D" uid="uid://b3bkkugr51fdc" path="res://Art/SpriteBoss/BossV1_Cri1_F15.png" id="18_qpf8x"]
+[ext_resource type="Texture2D" uid="uid://bwo6dnpp2g42m" path="res://Art/SpriteBoss/BossV1_Marche_F2.png" id="19_b8brb"]
+[ext_resource type="Texture2D" uid="uid://bqjogwlnvyiq6" path="res://Art/SpriteBoss/BossV1_Marche_F3.png" id="20_gkicd"]
+[ext_resource type="Texture2D" uid="uid://b7qc3vnnniyvk" path="res://Art/SpriteBoss/BossV1_Marche_F6.png" id="21_faqhj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eyy0w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5krwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nqfji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nqfji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nqfji")
+}],
+"loop": true,
+"name": &"DashWindup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_krdih")
+}],
+"loop": true,
+"name": &"IdleZombie1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5krwi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nqfji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_q73rv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1ddph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_23vmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_scvmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_50opm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_cipi3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_s2y5f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ek5sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p7ov1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_cjrl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_reuae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jbgcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_umtcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_qpf8x")
+}],
+"loop": true,
+"name": &"ShoutBoss",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_b8brb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_gkicd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_faqhj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_krdih")
+}],
+"loop": true,
+"name": &"WalkZombie1",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtfp1"]
+radius = 8.00971
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qp131"]
+radius = 724.084
+
+[node name="Boss" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 3
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_bgi7q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 3.92699
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_eyy0w")
+animation = &"DashWindup"
+autoplay = "IdleZombie1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.7174
+scale = Vector2(3, 4)
+shape = SubResource("CircleShape2D_vtfp1")
+
+[node name="Smell" type="Area2D" parent="."]
+
+[node name="SmellDistance" type="CollisionShape2D" parent="Smell"]
+shape = SubResource("CircleShape2D_qp131")
+
+[node name="Wander" type="Timer" parent="."]
+autostart = true
+
+[node name="AttackCD" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="DashWindup" type="Timer" parent="."]
+one_shot = true
+
+[node name="DashDuration" type="Timer" parent="."]
+one_shot = true
+
+[node name="CastDuration" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Smell" to="." method="_on_smell_body_entered"]
+[connection signal="body_exited" from="Smell" to="." method="_on_smell_body_exited"]
+[connection signal="timeout" from="Wander" to="." method="_on_wander_timeout"]
