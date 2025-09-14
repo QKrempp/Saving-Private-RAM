@@ -10,8 +10,8 @@ const TILE_SIZE := 140;
 @export var connect_regions: bool = true     # relier toutes les zones vides
 @export var keep_largest_only: bool = false  # si true, supprime les petites zones au lieu de les relier
 
-var player_pos_grid = Vector2.ZERO
-var player_pixel_pos = Vector2.ZERO
+var player_pos_grid = Vector2i.ZERO
+var player_pixel_pos = Vector2i.ZERO
 
 var grid: Array = []  # grid[y][x] = 0 (vide) ou 1 (mur)
 var rooms: Array = [] 
@@ -22,20 +22,17 @@ func _ready() -> void:
 	sort_regions_by_size()
 	var player_pos_array = _region_center(rooms[0])
 	#player_pos_grid = random_pos()
-	player_pos_grid = Vector2(player_pos_array[0], player_pos_array[1])
-	player_pixel_pos = Vector2(player_pos_grid.x * TILE_SIZE, player_pos_grid.y * TILE_SIZE)
-	print_grid() 
+	player_pos_grid = Vector2i(player_pos_array[0], player_pos_array[1])
+	player_pixel_pos = Vector2i(player_pos_grid.x * TILE_SIZE, player_pos_grid.y * TILE_SIZE)
+	#print_grid() 
 	
 	
 func put_spawner_in_regions():
 	for region in rooms.slice(1):
 		var spawner = SPAWNER.instantiate()
 		var pos = _region_center(region)
-		print("instantiate new spawner at " + str(pos.x * TILE_SIZE) + " " + str(pos.y * TILE_SIZE))
 		spawner.global_position = Vector2(pos.x * TILE_SIZE, pos.y * TILE_SIZE)
 		get_tree().current_scene.add_child(spawner)
-		
-		
 
 func random_pos() -> Vector2:
 	var count := 0
