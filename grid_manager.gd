@@ -47,7 +47,6 @@ func random_pos() -> Vector2:
 func render_map():
 	var floor = get_children().get(0)
 	var world = get_children().get(1)
-	print(floor)
 	for y in range(0, height):
 		for x in range(width):
 			floor.set_cell(Vector2(x, y), 0, Vector2(0, 0))
