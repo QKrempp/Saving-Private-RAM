@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cimcu2aagyfo5"]
+[gd_scene load_steps=9 format=3 uid="uid://cimcu2aagyfo5"]
 
 [ext_resource type="Script" uid="uid://dyebhhnmpnhel" path="res://enemy.gd" id="1_s7bn3"]
 [ext_resource type="Texture2D" uid="uid://bub3mfqhrc7nj" path="res://Art/SpriteZombie1/Zombie_F1.png" id="2_a68wp"]
@@ -37,11 +37,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtfp1"]
 radius = 8.06226
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qp131"]
+radius = 300.0
+
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 3
 collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_s7bn3")
+weight = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 2.35619
@@ -55,3 +59,15 @@ frame_progress = 0.131442
 rotation = 1.7174
 scale = Vector2(3, 4)
 shape = SubResource("CircleShape2D_vtfp1")
+
+[node name="Smell" type="Area2D" parent="."]
+
+[node name="SmellDistance" type="CollisionShape2D" parent="Smell"]
+shape = SubResource("CircleShape2D_qp131")
+
+[node name="Wander" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="Smell" to="." method="_on_smell_body_entered"]
+[connection signal="body_exited" from="Smell" to="." method="_on_smell_body_exited"]
+[connection signal="timeout" from="Wander" to="." method="_on_wander_timeout"]

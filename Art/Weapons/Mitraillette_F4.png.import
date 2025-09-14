@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://303rnysq0rvw"
-path="res://.godot/imported/Bullet.png-37f85bdf3e275581eec066dada9474bb.ctex"
+uid="uid://cdco60dam2qa7"
+path="res://.godot/imported/Mitraillette_F4.png-194bce9d4d99f2fd3ad74b3a1d429706.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Bullet.png"
-dest_files=["res://.godot/imported/Bullet.png-37f85bdf3e275581eec066dada9474bb.ctex"]
+source_file="res://Art/Weapons/Mitraillette_F4.png"
+dest_files=["res://.godot/imported/Mitraillette_F4.png-194bce9d4d99f2fd3ad74b3a1d429706.ctex"]
 
 [params]
 

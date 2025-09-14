@@ -5,7 +5,7 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var audio: AudioStreamPlayer = $AudioStreamPlayer
 @onready var bruits_de_pas: AudioStreamPlayer = $BruitsDePas
 @onready var _fire_rate: Timer = $FireRate
-@onready var animated_ryan_sprite:AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_ryan_sprite: AnimatedSprite2D = $AnimatedSprite2D_Character
 #@onready var _ram : RamOverlay = $/root/Room/Overlay/RAM
 
 var last_offset := 0.0
@@ -95,6 +95,8 @@ func _shoot_bullets(mouse_pos, bullet_number) -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 
+	var animated_weapon_sprite:AnimatedSprite2D = $AnimatedSprite2D_Weapon1
+
 	for i in bullet_number:
 		var inst: Bullet = BULLET.instantiate()
 		get_tree().current_scene.add_child(inst)
@@ -102,9 +104,10 @@ func _shoot_bullets(mouse_pos, bullet_number) -> void:
 		# angle en radians avec un décalage aléatoire
 		var random_offset := deg_to_rad(rng.randf_range(-spread_angle, spread_angle))
 		var final_dir := base_direction.rotated(random_offset)
-
+	
 		inst.start(start_pos, final_dir)
 		shoot_bullet.emit(inst)
 
 	_fire_rate.start()
 	audio.play()
+	animated_weapon_sprite.play("Shoot")

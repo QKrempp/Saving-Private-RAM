@@ -11,5 +11,5 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	entity_destroyed.emit()
+	#entity_destroyed.emit()
 	queue_free()
