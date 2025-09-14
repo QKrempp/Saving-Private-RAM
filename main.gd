@@ -13,13 +13,21 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var _main_character : MainCharacter = $MainCharacter
 @onready var ui: CanvasLayer = $LevelUpUi
 @onready var world: GridManager = $GridManager
+@onready var _boss: Boss = $Boss
 
 func _ready() -> void:
 	_main_character.global_position = world.player_pixel_pos
+	_boss.global_position = world.player_pixel_pos
 	rng.randomize()
 	_main_character.level_up.connect(_on_player_level_up.bind())
 	ui.option_chosen.connect(_on_upgrade_chosen)
 	world.put_spawner_in_regions()
+	_boss.win.connect(_on_boss_win)
+	
+	
+func _on_boss_win() -> void:
+	print("Victory !")
+	get_tree().quit()
 
 func _on_enemy_spawned(enemy: Enemy) -> void:
 	enemy.entity_destroyed.connect(_main_character._on_enemy_killed.bind(enemy.xp_amount))
