@@ -1,7 +1,6 @@
-class_name World extends TileMapLayer
+class_name GridManager extends Node
 
 const SPAWNER: PackedScene = preload("res://EnemySpawner.tscn")
-const TILE_SIZE := 140;
 
 @export var width: int = 30
 @export var height: int = 50
@@ -13,6 +12,8 @@ const TILE_SIZE := 140;
 var player_pos_grid = Vector2i.ZERO
 var player_pixel_pos = Vector2i.ZERO
 
+const TILE_SIZE := 140
+
 var grid: Array = []  # grid[y][x] = 0 (vide) ou 1 (mur)
 var rooms: Array = [] 
 
@@ -21,7 +22,7 @@ func _ready() -> void:
 	render_map()
 	sort_regions_by_size()
 	var player_pos_array = _region_center(rooms[0])
-	#player_pos_grid = random_pos()
+	player_pos_grid = random_pos()
 	player_pos_grid = Vector2i(player_pos_array[0], player_pos_array[1])
 	player_pixel_pos = Vector2i(player_pos_grid.x * TILE_SIZE, player_pos_grid.y * TILE_SIZE)
 	#print_grid() 
@@ -37,19 +38,21 @@ func put_spawner_in_regions():
 func random_pos() -> Vector2:
 	var count := 0
 	while count < 1000:
-		var res = Vector2(randi_range(0, width), randi_range(0, height))
+		var res = Vector2(randi_range(0, width-1), randi_range(0, height-1))
 		if grid[res.y][res.x] == 0:
 			return res
 		count+=1
 	return Vector2(0, 0)
 
 func render_map():
+	var floor = get_children().get(0)
+	var world = get_children().get(1)
+	print(floor)
 	for y in range(0, height):
 		for x in range(width):
+			floor.set_cell(Vector2(x, y), 0, Vector2(0, 0))
 			if grid[y][x] == 1:
-				set_cell(Vector2(x, y), 2, Vector2(0, 0))
-			else:
-				set_cell(Vector2(x, y), 4, Vector2(0, 0))
+				world.set_cell(Vector2(x, y), 2, Vector2(0, 0))
 
 func generate(p_width: int = -1, p_height: int = -1, p_wall_probability: float = -1.0, p_smooth_steps: int = -1) -> void:
 	# Paramètres

@@ -12,7 +12,7 @@ const BULLET: PackedScene = preload("res://Bullet.tscn")
 @onready var _overlay_ram : RamOverlay = $Overlay/RAM
 @onready var _main_character : MainCharacter = $MainCharacter
 @onready var ui: CanvasLayer = $LevelUpUi
-@onready var world: World = $World
+@onready var world: GridManager = $GridManager
 
 func _ready() -> void:
 	_main_character.global_position = world.player_pixel_pos
