@@ -19,7 +19,7 @@ func _ready() -> void:
 func _on_spawn_timer_timeout() -> void:
 	if is_running:
 		var inst: Enemy = null
-		if nb_enemy_spawned == 25 and is_boss_spawner:
+		if nb_enemy_spawned == 15 and is_boss_spawner:
 			inst = BOSS.instantiate()
 			inst.win.connect(_main_room._on_boss_win.bind())
 		else:

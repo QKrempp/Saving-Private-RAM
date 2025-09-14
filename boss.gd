@@ -11,8 +11,6 @@ const ENEMY: PackedScene = preload("res://Enemy.tscn")
 @export var dash_windup := 0.4
 @export var dash_duration := 0.3
 
-const BULLET := preload("res://Bullet.tscn")
-
 @onready var _attack_cd: Timer = $AttackCD
 @onready var _dash_windup_t: Timer = $DashWindup
 @onready var _dash_duration_t: Timer = $DashDuration

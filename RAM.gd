@@ -34,7 +34,8 @@ func refresh_ram_counter() -> void:
 		add_theme_color_override("font_color", default_text_color)
 	Engine.max_fps = fps
 	if used_ram >= total_ram:
-		get_tree().quit()
+		var game_scene: PackedScene = load("res://MainMenu.tscn")
+		get_tree().change_scene_to_packed(game_scene)
 	upate_overlay_text()
 
 func upate_overlay_text() -> void:

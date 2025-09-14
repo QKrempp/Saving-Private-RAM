@@ -8,8 +8,6 @@ var upgrades: Array[Dictionary] = [
 	{ "id": "kaarsher_1", "name": "Clear all blood stains"}
 ]
 
-const BULLET: PackedScene = preload("res://Bullet.tscn")
-
 signal clear_blood
 
 @onready var _overlay_ram : RamOverlay = $Overlay/RAM
@@ -25,8 +23,8 @@ func _ready() -> void:
 	world.put_spawner_in_regions()
 	
 func _on_boss_win() -> void:
-	print("Victory !")
-	get_tree().quit()
+	var game_scene: PackedScene = load("res://MainMenu.tscn")
+	get_tree().change_scene_to_packed(game_scene)
 
 func _on_enemy_spawned(enemy: Enemy) -> void:
 	enemy.entity_destroyed.connect(_main_character._on_enemy_killed.bind(enemy.xp_amount))
