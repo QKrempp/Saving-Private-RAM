@@ -16,4 +16,3 @@ func _on_spawn_timer_timeout() -> void:
 	get_tree().current_scene.add_child(inst)
 	inst.start(spawn_position, Vector2.from_angle(randf()*2*PI))
 	enemy_spawned.emit(inst)
-	

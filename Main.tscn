@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4iswbwybro2" path="res://Player.tscn" id="1_glv2v"]
 [ext_resource type="Script" uid="uid://cmsp16brd2o8w" path="res://main.gd" id="1_r0du0"]
 [ext_resource type="Texture2D" uid="uid://dlugab0o1q0ht" path="res://Art/Envrionment/Mur1Angle.png" id="2_c6i3y"]
-[ext_resource type="Script" path="res://grid_manager.gd" id="2_j4qnp"]
+[ext_resource type="Script" uid="uid://5attjqatjtlm" path="res://grid_manager.gd" id="2_j4qnp"]
 [ext_resource type="Script" uid="uid://cy237pyaj8i7b" path="res://RAM.gd" id="2_uu6xs"]
 [ext_resource type="Texture2D" uid="uid://ndwly0t6aavc" path="res://Art/Envrionment/Mur1AngleOblique.png" id="3_c2ibq"]
 [ext_resource type="Script" path="res://xpbar.gd" id="4_3dxm6"]
@@ -364,7 +364,7 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Coucou"
 script = ExtResource("2_uu6xs")
-total_ram = 128
+total_ram = 1024
 
 [node name="MusiqueDeFond" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_fos0i")
