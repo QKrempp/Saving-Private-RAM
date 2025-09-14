@@ -295,8 +295,8 @@ texture_region_size = Vector2i(70, 70)
 [sub_resource type="TileSet" id="TileSet_bg4s2"]
 tile_size = Vector2i(70, 70)
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
+physics_layer_0/collision_layer = 7
+physics_layer_0/collision_mask = 7
 sources/1 = SubResource("TileSetAtlasSource_j4qnp")
 sources/0 = SubResource("TileSetAtlasSource_c2ibq")
 sources/2 = SubResource("TileSetAtlasSource_fpfj3")
@@ -378,8 +378,6 @@ autoplay = true
 [node name="LevelUpUi" parent="." instance=ExtResource("8_trn2v")]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(1, 0.797168, 0.986903, 1)
-energy = 0.5
 blend_mode = 1
 
 [connection signal="timeout" from="Overlay/RAM/UpdateTimer" to="Overlay/RAM" method="_on_update_timer_timeout"]

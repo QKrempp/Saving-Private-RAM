@@ -88,12 +88,14 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_r3kul"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.910714)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_jatw7"]
 gradient = SubResource("Gradient_r3kul")
-width = 1000
-height = 1000
+width = 1200
+height = 1199
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
@@ -141,4 +143,6 @@ parameters/looping = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 shadow_enabled = true
+shadow_filter = 1
+shadow_filter_smooth = 2.0
 texture = SubResource("GradientTexture2D_jatw7")

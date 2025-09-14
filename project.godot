@@ -25,6 +25,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="SmashTheRAM"
 
+[gui]
+
+theme/custom_font="uid://ikc37bras67e"
+
 [input]
 
 ui_left={

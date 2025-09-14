@@ -17,9 +17,9 @@ func _on_spawn_timer_timeout() -> void:
 		var spawn_position = _spawn_area_shape.global_position
 		var inst = ENEMY.instantiate()
 		get_tree().current_scene.add_child(inst)
-		inst.start(spawn_position, Vector2.from_angle(randf()*2*PI))
+		inst.start(spawn_position, Vector2.from_angle(randf() * 2 * PI))
 		enemy_spawned.emit(inst)
-		_spawn_timer.wait_time -= 0.1 * randf()
+		_spawn_timer.wait_time -= 0.05 * randf()
 
 
 func _on_spawn_area_body_entered(body: Node2D) -> void:
